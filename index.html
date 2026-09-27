@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NOVA — Создание современных сайтов</title>
+
+    <meta name="description"
+          content="NOVA — создание современных, быстрых и адаптивных сайтов.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080812;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* ===== BACKGROUND ===== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #6c4cff;
+            filter: blur(180px);
+            opacity: 0.12;
+            top: -200px;
+            left: -200px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #00c6ff;
+            filter: blur(180px);
+            opacity: 0.08;
+            right: -200px;
+            bottom: -200px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ===== HEADER ===== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            background: rgba(8, 8, 18, 0.75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .nav {
+            max-width: 1150px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+
+            background: linear-gradient(90deg, #8d6cff, #00c6ff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #b8b8c8;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero {
+            min-height: 100vh;
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 150px 25px 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-content {
+            max-width: 680px;
+            animation: fadeUp 1s ease;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 14px;
+            margin-bottom: 20px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.04);
+            color: #bdb4ff;
+
+            font-size: 13px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 78px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #9b7cff,
+                #00c6ff
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: #a8a8b8;
+            font-size: 19px;
+            max-width: 600px;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 23px;
+            border-radius: 12px;
+
+            font-weight: 700;
+            font-size: 15px;
+
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                135deg,
+                #7457ff,
+                #00aeea
+            );
+
+            box-shadow: 0 10px 35px rgba(91, 72, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(91, 72, 255, 0.4);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-3px);
+        }
+
+        /* ===== HERO CARD ===== */
+
+        .hero-card {
+            width: 350px;
+            min-width: 300px;
+
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+
+            animation: floating 5s ease-in-out infinite;
+        }
+
+        .hero-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .hero-card p {
+            color: #9999a8;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .mini-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .mini-stat:last-child {
+            border-bottom: none;
+        }
+
+        .mini-stat span:first-child {
+            color: #9999a8;
+        }
+
+        .mini-stat span:last-child {
+            font-weight: bold;
+        }
+
+        /* ===== SECTIONS ===== */
+
+        section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 100px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title span {
+            color: #8973ff;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 15px auto 0;
+            color: #9292a2;
+        }
+
+        /* ===== CARDS ===== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 30px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+
+            transition: 0.35s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(137,115,255,0.5);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(120,90,255,0.25),
+                rgba(0,198,255,0.15)
+            );
+
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #9696a6;
+            font-size: 15px;
+        }
+
+        /* ===== ABOUT ===== */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: #9b9baa;
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat {
+            padding: 25px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 35px;
+            margin-bottom: 5px;
+
+            background: linear-gradient(
+                90deg,
+                #9b7cff,
+                #00c6ff
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .stat span {
+            color: #9999a8;
+            font-size: 14px;
+        }
+
+        /* ===== PROCESS ===== */
+
+        .process {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .step {
+            padding: 25px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .number {
+            font-size: 14px;
+            color: #8d78ff;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #9696a6;
+            font-size: 14px;
+        }
+
+        /* ===== CTA ===== */
+
+        .cta {
+            text-align: center;
+
+            padding: 80px 30px;
+
+            border-radius: 30px;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(115,85,255,0.25),
+                    transparent 50%
+                ),
+                rgba(255,255,255,0.04);
+
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cta h2 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #9999a8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 30px 25px;
+
+            color: #777787;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* ===== MOBILE ===== */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                position: absolute;
+
+                top: 70px;
+                left: 20px;
+                right: 20px;
+
+                display: none;
+                flex-direction: column;
+
+                padding: 20px;
+
+                border-radius: 18px;
+
+                background: rgba(12,12,25,0.97);
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-top: 130px;
+            }
+
+            .hero-card {
+                width: 100%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .process {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-title h2,
+            .about h2 {
+                font-size: 34px;
+            }
+
+            .cta h2 {
+                font-size: 35px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .hero {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            section {
+                padding: 75px 20px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .buttons {
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .process {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="nav">
+
+        <a href="#home" class="logo">
+            NOVA
+        </a>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="#home">Главная</a>
+            <a href="#services">Услуги</a>
+            <a href="#about">О нас</a>
+            <a href="#process">Процесс</a>
+            <a href="#contact">Контакты</a>
+
+        </div>
+
+        <button class="menu-btn" onclick="toggleMenu()">
+            ☰
+        </button>
+
+    </nav>
+</header>
+
+
+<!-- ===== HERO ===== -->
+
+<main id="home">
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🚀 Современные digital-решения
+        </div>
+
+        <h1>
+            Создаём сайты,
+            <span class="gradient-text">
+                которые работают
+            </span>
+        </h1>
+
+        <p>
+            Современный дизайн, адаптация под смартфоны,
+            быстрый запуск и удобная связь с клиентами.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="https://t.me/NovaSiteSupportBot"
+                target="_blank"
+                class="btn btn-primary"
+            >
+                💬 Написать нам
+            </a>
+
+            <a
+                href="#services"
+                class="btn btn-secondary"
+            >
+                Узнать больше
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <h3>
+            NOVA Digital
+        </h3>
+
+        <p>
+            Сайт, который выглядит современно
+            на телефоне и компьютере.
+        </p>
+
+        <div class="mini-stat">
+            <span>Адаптация</span>
+            <span>100%</span>
+        </div>
+
+        <div class="mini-stat">
+            <span>Дизайн</span>
+            <span>Premium</span>
+        </div>
+
+        <div class="mini-stat">
+            <span>Поддержка</span>
+            <span>Telegram</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== SERVICES ===== -->
+
+<section id="services">
+
+    <div class="section-title">
+
+        <span>Наши услуги</span>
+
+        <h2>
+            Всё необходимое
+        </h2>
+
+        <p>
+            Создаём полноценные сайты,
+            которые можно использовать для бизнеса,
+            проектов и личных брендов.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">
+                🎨
+            </div>
+
+            <h3>
+                Современный дизайн
+            </h3>
+
+            <p>
+                Чистый интерфейс, красивые блоки,
+                анимации и современный визуальный стиль.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📱
+            </div>
+
+            <h3>
+                Адаптация
+            </h3>
+
+            <p>
+                Сайт автоматически подстраивается
+                под смартфоны, планшеты и компьютеры.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h3>
+                Быстрый запуск
+            </h3>
+
+            <p>
+                Простая структура позволяет быстро
+                разместить сайт в интернете.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                💬
+            </div>
+
+            <h3>
+                Telegram
+            </h3>
+
+            <p>
+                Клиенты могут сразу связаться
+                с поддержкой через Telegram-бота.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🔒
+            </div>
+
+            <h3>
+                Надёжность
+            </h3>
+
+            <p>
+                Аккуратная структура проекта,
+                которую удобно развивать дальше.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🚀
+            </div>
+
+            <h3>
+                Масштабирование
+            </h3>
+
+            <p>
+                В проект можно добавить новые страницы,
+                функции, формы и сервисы.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== ABOUT ===== -->
+
+<section id="about">
+
+    <div class="about">
+
+        <div>
+
+            <div class="section-title"
+                 style="text-align:left; margin-bottom:25px;">
+
+                <span>О проекте</span>
+
+                <h2>
+                    NOVA создана
+                    для современных проектов
+                </h2>
+
+            </div>
+
+            <p>
+                Мы создаём удобные цифровые решения,
+                которые помогают представить проект
+                профессионально.
+            </p>
+
+            <p>
+                Главный принцип — простой интерфейс,
+                современный внешний вид и удобство
+                для пользователя.
+            </p>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong>100%</strong>
+                <span>Адаптивный дизайн</span>
+            </div>
+
+            <div class="stat">
+                <strong>24/7</strong>
+                <span>Онлайн-доступ</span>
+            </div>
+
+            <div class="stat">
+                <strong>6+</strong>
+                <span>Основных возможностей</span>
+            </div>
+
+            <div class="stat">
+                <strong>∞</strong>
+                <span>Возможности развития</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== PROCESS ===== -->
+
+<section id="process">
+
+    <div class="section-title">
+
+        <span>Как это работает</span>
+
+        <h2>
+            От идеи до запуска
+        </h2>
+
+        <p>
+            Простой процесс создания цифрового проекта.
+        </p>
+
+    </div>
+
+
+    <div class="process">
+
+        <div class="step">
+
+            <div class="number">
+                01
+            </div>
+
+            <h3>
+                Идея
+            </h3>
+
+            <p>
+                Определяем задачу и структуру проекта.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">
+                02
+            </div>
+
+            <h3>
+                Дизайн
+            </h3>
+
+            <p>
+                Создаём внешний вид и интерфейс.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">
+                03
+            </div>
+
+            <h3>
+                Разработка
+            </h3>
+
+            <p>
+                Собираем сайт и подключаем необходимые функции.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">
+                04
+            </div>
+
+            <h3>
+                Запуск
+            </h3>
+
+            <p>
+                Размещаем проект в интернете.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== CONTACT ===== -->
+
+<section id="contact">
+
+    <div class="cta">
+
+        <h2>
+            Есть идея?
+        </h2>
+
+        <p>
+            Напишите нам в Telegram.
+            Обсудим проект и его дальнейшее развитие.
+        </p>
+
+        <a
+            href="https://t.me/NovaSiteSupportBot"
+            target="_blank"
+            class="btn btn-primary"
+        >
+            💬 Открыть Telegram
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+
+    © 2026 NOVA. Все права защищены.
+
+</footer>
+
+
+<script>
+
+    function toggleMenu() {
+
+        const menu = document.getElementById("navLinks");
+
+        menu.classList.toggle("active");
+
+    }
+
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            document
+                .getElementById("navLinks")
+                .classList.remove("active");
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
+
