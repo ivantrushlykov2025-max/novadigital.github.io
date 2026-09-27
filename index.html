@@ -1,814 +1,1095 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>NOVA — сайты, Telegram-боты и автоматизация</title>
-
-    <meta name="description"
-          content="NOVA DIGITAL — создание сайтов, Telegram-ботов и автоматизация бизнеса. Доступные цены и быстрый запуск.">
-
-    <meta name="theme-color" content="#080812">
-
-    <!-- Favicon -->
-    <link rel="icon"
-          type="image/svg+xml"
-          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080812'/%3E%3Ctext x='50%25' y='57%25' text-anchor='middle' font-family='Arial' font-size='34' font-weight='900' fill='%238b5cf6'%3EN%3C/text%3E%3C/svg%3E">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background:
-                radial-gradient(circle at 20% 10%, rgba(139,92,246,.18), transparent 30%),
-                radial-gradient(circle at 80% 20%, rgba(59,130,246,.14), transparent 30%),
-                #080812;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            width: min(1120px, 92%);
-            margin: auto;
-        }
-
-        /* HEADER */
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(8,8,18,.72);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(255,255,255,.07);
-        }
-
-        .nav {
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 27px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg,#8b5cf6,#3b82f6);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .logo span {
-            font-size: 12px;
-            color: #777;
-            display: block;
-            letter-spacing: 3px;
-            margin-top: -6px;
-        }
-
-        nav {
-            display: flex;
-            gap: 28px;
-            align-items: center;
-        }
-
-        nav a {
-            color: #bcbccc;
-            font-size: 14px;
-            transition: .25s;
-        }
-
-        nav a:hover {
-            color: #fff;
-        }
-
-        .nav-button {
-            padding: 10px 18px;
-            border-radius: 12px;
-            background: linear-gradient(135deg,#8b5cf6,#6366f1);
-            color: white !important;
-            font-weight: 700;
-        }
-
-        .menu {
-            display: none;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 90px;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 820px;
-            animation: fadeUp .8s ease;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 8px 14px;
-            border: 1px solid rgba(139,92,246,.35);
-            border-radius: 30px;
-            background: rgba(139,92,246,.08);
-            color: #b9a4ff;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: clamp(44px,7vw,78px);
-            line-height: 1.02;
-            letter-spacing: -3px;
-            margin-bottom: 25px;
-        }
-
-        h1 span {
-            background: linear-gradient(90deg,#8b5cf6,#3b82f6);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            color: #a6a6b7;
-            font-size: 19px;
-            max-width: 650px;
-            margin-bottom: 35px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 15px 23px;
-            border-radius: 14px;
-            font-weight: 700;
-            transition: .25s;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg,#8b5cf6,#6366f1);
-            box-shadow: 0 12px 35px rgba(99,102,241,.25);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 40px rgba(99,102,241,.4);
-        }
-
-        .btn-secondary {
-            border: 1px solid rgba(255,255,255,.12);
-            background: rgba(255,255,255,.04);
-            color: #ddd;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,.08);
-            transform: translateY(-3px);
-        }
-
-        .stats {
-            display: flex;
-            gap: 45px;
-            margin-top: 60px;
-        }
-
-        .stat strong {
-            display: block;
-            font-size: 27px;
-        }
-
-        .stat small {
-            color: #777789;
-        }
-
-        /* SECTIONS */
-
-        section {
-            padding: 110px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 55px;
-        }
-
-        .section-title h2 {
-            font-size: clamp(32px,5vw,48px);
-            margin-bottom: 12px;
-        }
-
-        .section-title p {
-            color: #88889a;
-            max-width: 600px;
-            margin: auto;
-        }
-
-        /* SERVICES */
-
-        .services {
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 20px;
-        }
-
-        .card {
-            padding: 32px;
-            border-radius: 22px;
-            border: 1px solid rgba(255,255,255,.08);
-            background: linear-gradient(
-                145deg,
-                rgba(255,255,255,.065),
-                rgba(255,255,255,.025)
-            );
-            transition: .3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(139,92,246,.4);
-            box-shadow: 0 20px 60px rgba(0,0,0,.25);
-        }
-
-        .icon {
-            width: 52px;
-            height: 52px;
-            display: grid;
-            place-items: center;
-            border-radius: 15px;
-            background: rgba(139,92,246,.13);
-            font-size: 25px;
-            margin-bottom: 22px;
-        }
-
-        .card h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: #8e8e9f;
-            margin-bottom: 24px;
-        }
-
-        .price {
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 20px;
-        }
-
-        .price span {
-            color: #777789;
-            font-size: 13px;
-            font-weight: normal;
-        }
-
-        /* ABOUT */
-
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about h2 {
-            font-size: 44px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .about p {
-            color: #9696a7;
-            margin-bottom: 25px;
-        }
-
-        .checks {
-            display: grid;
-            gap: 13px;
-        }
-
-        .check {
-            padding: 15px 18px;
-            border-radius: 14px;
-            background: rgba(255,255,255,.04);
-            border: 1px solid rgba(255,255,255,.06);
-        }
-
-        /* PRICE NOTE */
-
-        .price-note {
-            margin-top: 25px;
-            text-align: center;
-            color: #777789;
-            font-size: 13px;
-        }
-
-        /* CTA */
-
-        .cta {
-            text-align: center;
-            padding: 75px 25px;
-            border-radius: 30px;
-            background:
-                radial-gradient(circle at center, rgba(139,92,246,.25), transparent 60%),
-                rgba(255,255,255,.035);
-            border: 1px solid rgba(139,92,246,.18);
-        }
-
-        .cta h2 {
-            font-size: clamp(32px,5vw,50px);
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            color: #9292a4;
-            margin-bottom: 28px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            border-top: 1px solid rgba(255,255,255,.07);
-            padding: 30px 0;
-            color: #666678;
-            font-size: 13px;
-        }
-
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        /* ANIMATION */
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 800px) {
-
-            nav {
-                display: none;
-                position: absolute;
-                top: 72px;
-                left: 0;
-                width: 100%;
-                padding: 20px;
-                background: rgba(8,8,18,.97);
-                flex-direction: column;
-                border-bottom: 1px solid rgba(255,255,255,.08);
-            }
-
-            nav.active {
-                display: flex;
-            }
-
-            .menu {
-                display: block;
-            }
-
-            .hero {
-                min-height: auto;
-                padding-top: 145px;
-                padding-bottom: 90px;
-            }
-
-            h1 {
-                letter-spacing: -2px;
-            }
-
-            .hero p {
-                font-size: 17px;
-            }
-
-            .stats {
-                gap: 22px;
-                flex-wrap: wrap;
-            }
-
-            .services {
-                grid-template-columns: 1fr;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .about h2 {
-                font-size: 36px;
-            }
-
-            section {
-                padding: 80px 0;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 450px) {
-
-            .container {
-                width: 90%;
-            }
-
-            .buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                text-align: center;
-                width: 100%;
-            }
-
-            .stats {
-                justify-content: space-between;
-            }
-
-            .stat strong {
-                font-size: 23px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NOVA DIGITAL — Цифровые решения для бизнеса</title>
+  <meta name="description" content="NOVA DIGITAL — сайты, Telegram-боты и автоматизация для бизнеса.">
+
+  <meta name="theme-color" content="#080812">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(125, 60, 255, .18), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(0, 200, 255, .12), transparent 30%),
+        #080812;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(8, 8, 18, .72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #9b5cff, #00d9ff);
+      -webkit-background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    .logo small {
+      display: block;
+      font-size: 8px;
+      letter-spacing: 4px;
+      color: #aaa;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      color: #bdbdcc;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .account-btn {
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .account-btn:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 0 70px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(139, 92, 246, .1);
+      border: 1px solid rgba(139, 92, 246, .3);
+      color: #c9b2ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: .98;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #a56bff, #00d9ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #a8a8ba;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 21px;
+      border-radius: 14px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,.1);
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3cff, #00bfe8);
+      box-shadow: 0 10px 40px rgba(94, 48, 255, .28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.05);
+      color: #ddd;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      font-size: 42px;
+      margin-bottom: 14px;
+      letter-spacing: -1.5px;
+    }
+
+    .section-text {
+      color: #9696a8;
+      line-height: 1.7;
+      max-width: 650px;
+      margin-bottom: 42px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 22px;
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.07),
+        rgba(255,255,255,.025)
+      );
+      border: 1px solid rgba(255,255,255,.08);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(139,92,246,.35);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: rgba(139,92,246,.14);
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #9696a8;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .price {
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 55px;
+    }
+
+    .stat {
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    .stat span {
+      color: #88889a;
+      font-size: 14px;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 70px 25px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(137,72,255,.25), transparent 50%),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .cta p {
+      color: #9999aa;
+      margin: 15px auto 28px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 30px 0;
+      color: #777789;
+      font-size: 13px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(430px, 100%);
+      background: #10101c;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 25px 100px rgba(0,0,0,.5);
+      position: relative;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 8px;
+    }
+
+    .modal-subtitle {
+      color: #8e8e9f;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .close {
+      position: absolute;
+      right: 18px;
+      top: 15px;
+      border: 0;
+      background: transparent;
+      color: #aaa;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .field {
+      margin-bottom: 13px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.045);
+      color: white;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: #8b5cf6;
+    }
+
+    .auth-main-btn {
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    .google-btn {
+      width: 100%;
+      margin-top: 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: white;
+      color: #111;
+      cursor: pointer;
+      min-height: 48px;
+      border-radius: 13px;
+      font-weight: 800;
+    }
+
+    .auth-links {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .auth-links button {
+      border: 0;
+      background: none;
+      color: #a978ff;
+      cursor: pointer;
+    }
+
+    .auth-message {
+      margin-top: 15px;
+      color: #bbb;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .user-panel {
+      display: none;
+      position: absolute;
+      right: 16px;
+      top: 64px;
+      width: 260px;
+      padding: 18px;
+      background: #12121f;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    }
+
+    .user-panel.active {
+      display: block;
+    }
+
+    .user-email {
+      color: #aaa;
+      font-size: 13px;
+      word-break: break-word;
+      margin: 8px 0 15px;
+    }
+
+    .logout-btn {
+      width: 100%;
+      padding: 11px;
+      border-radius: 11px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        top: 66px;
+        padding: 18px;
+        flex-direction: column;
+        align-items: stretch;
+        background: #11111d;
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 16px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-    <div class="container nav">
+  <div class="container nav">
+    <a href="#" class="logo">
+      NOVA
+      <small>DIGITAL</small>
+    </a>
 
-        <a href="#" class="logo">
-            NOVA
-            <span>DIGITAL</span>
-        </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Услуги</a>
+      <a href="#about">О нас</a>
+      <a href="#contact">Контакты</a>
 
-        <div class="menu" onclick="toggleMenu()">☰</div>
+      <button class="account-btn" id="accountButton">
+        Войти
+      </button>
+    </nav>
 
-        <nav id="nav">
-            <a href="#services" onclick="closeMenu()">Услуги</a>
-            <a href="#about" onclick="closeMenu()">О нас</a>
-            <a href="#contact" onclick="closeMenu()">Контакты</a>
+    <button class="menu-btn" id="menuButton">☰</button>
+  </div>
 
-            <a
-                href="https://t.me/NovaSiteSupportBot"
-                target="_blank"
-                class="nav-button">
-                Написать нам
-            </a>
-        </nav>
-
-    </div>
+  <div class="user-panel" id="userPanel">
+    <strong>Ваш аккаунт</strong>
+    <div class="user-email" id="userEmail"></div>
+    <button class="logout-btn" id="logoutButton">Выйти</button>
+  </div>
 </header>
-
 
 <main>
 
-    <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
 
-    <section class="hero">
-        <div class="container">
+        <div class="badge">NOVA DIGITAL STUDIO</div>
 
-            <div class="hero-content">
+        <h1>
+          Создаём
+          <span class="gradient">цифровые решения</span>
+          для бизнеса.
+        </h1>
 
-                <div class="badge">
-                    NOVA DIGITAL STUDIO
-                </div>
+        <p>
+          Современные сайты, Telegram-боты и автоматизация,
+          которые помогают бизнесу выглядеть профессионально
+          и работать эффективнее.
+        </p>
 
-                <h1>
-                    Создаём <span>цифровые решения</span> для бизнеса.
-                </h1>
+        <div class="buttons">
+          <a class="btn btn-primary"
+             href="https://t.me/NovaSiteSupportBot"
+             target="_blank">
+            Обсудить проект →
+          </a>
 
-                <p>
-                    Современные сайты, Telegram-боты и автоматизация.
-                    Быстрый запуск, понятная цена и внимание к деталям.
-                </p>
-
-                <div class="buttons">
-
-                    <a
-                        href="https://t.me/NovaSiteSupportBot"
-                        target="_blank"
-                        class="btn btn-primary">
-                        🚀 Обсудить проект
-                    </a>
-
-                    <a
-                        href="#services"
-                        class="btn btn-secondary">
-                        Посмотреть услуги
-                    </a>
-
-                </div>
-
-                <div class="stats">
-
-                    <div class="stat">
-                        <strong>990₽</strong>
-                        <small>стартовая цена</small>
-                    </div>
-
-                    <div class="stat">
-                        <strong>24/7</strong>
-                        <small>приём заявок</small>
-                    </div>
-
-                    <div class="stat">
-                        <strong>100%</strong>
-                        <small>онлайн</small>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- SERVICES -->
-
-    <section id="services">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>Наши услуги</h2>
-
-                <p>
-                    Всё необходимое для быстрого запуска вашего проекта.
-                </p>
-
-            </div>
-
-
-            <div class="services">
-
-
-                <!-- SITE -->
-
-                <div class="card">
-
-                    <div class="icon">🌐</div>
-
-                    <h3>Сайт</h3>
-
-                    <p>
-                        Современный адаптивный сайт для бизнеса,
-                        проекта или личного бренда.
-                    </p>
-
-                    <div class="price">
-                        990₽ <span>от</span>
-                    </div>
-
-                    <a
-                        href="https://t.me/NovaSiteSupportBot"
-                        target="_blank"
-                        class="btn btn-primary">
-                        Заказать
-                    </a>
-
-                </div>
-
-
-                <!-- BOT -->
-
-                <div class="card">
-
-                    <div class="icon">🤖</div>
-
-                    <h3>Telegram-бот</h3>
-
-                    <p>
-                        Бот для поддержки клиентов, заявок,
-                        уведомлений и автоматизации.
-                    </p>
-
-                    <div class="price">
-                        1 490₽ <span>от</span>
-                    </div>
-
-                    <a
-                        href="https://t.me/NovaSiteSupportBot"
-                        target="_blank"
-                        class="btn btn-primary">
-                        Заказать
-                    </a>
-
-                </div>
-
-
-                <!-- AUTOMATION -->
-
-                <div class="card">
-
-                    <div class="icon">⚡</div>
-
-                    <h3>Автоматизация</h3>
-
-                    <p>
-                        Убираем рутинные действия и связываем
-                        сервисы в единую систему.
-                    </p>
-
-                    <div class="price">
-                        1 990₽ <span>от</span>
-                    </div>
-
-                    <a
-                        href="https://t.me/NovaSiteSupportBot"
-                        target="_blank"
-                        class="btn btn-primary">
-                        Заказать
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="price-note">
-                * Финальная стоимость зависит от сложности проекта.
-            </div>
-
+          <a class="btn btn-secondary" href="#services">
+            Наши услуги
+          </a>
         </div>
 
-    </section>
+        <div class="stats">
+          <div class="stat">
+            <strong>24/7</strong>
+            <span>Цифровая доступность</span>
+          </div>
 
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Индивидуальный подход</span>
+          </div>
 
-    <!-- ABOUT -->
-
-    <section id="about">
-
-        <div class="container">
-
-            <div class="about">
-
-                <div>
-
-                    <div class="badge">
-                        ПОЧЕМУ NOVA
-                    </div>
-
-                    <h2>
-                        Просто. Современно. Доступно.
-                    </h2>
-
-                    <p>
-                        Мы создаём цифровые продукты без лишней сложности.
-                        Вы получаете понятный результат и можете начать
-                        с небольшого бюджета.
-                    </p>
-
-                    <a
-                        href="https://t.me/NovaSiteSupportBot"
-                        target="_blank"
-                        class="btn btn-primary">
-                        Обсудить задачу
-                    </a>
-
-                </div>
-
-
-                <div class="checks">
-
-                    <div class="check">
-                        ✦ Современный дизайн
-                    </div>
-
-                    <div class="check">
-                        ✦ Адаптация под смартфоны
-                    </div>
-
-                    <div class="check">
-                        ✦ Быстрый запуск
-                    </div>
-
-                    <div class="check">
-                        ✦ Подключение Telegram
-                    </div>
-
-                    <div class="check">
-                        ✦ Доступные цены
-                    </div>
-
-                </div>
-
-            </div>
-
+          <div class="stat">
+            <strong>∞</strong>
+            <span>Возможности роста</span>
+          </div>
         </div>
 
-    </section>
+      </div>
+    </div>
+  </section>
 
+  <section id="services">
+    <div class="container">
 
-    <!-- CTA -->
+      <h2 class="section-title">Наши услуги</h2>
 
-    <section id="contact">
+      <p class="section-text">
+        Создаём цифровые инструменты под конкретные задачи бизнеса.
+      </p>
 
-        <div class="container">
+      <div class="grid">
 
-            <div class="cta">
-
-                <div class="badge">
-                    ГОТОВЫ НАЧАТЬ?
-                </div>
-
-                <h2>
-                    Есть идея? Давайте создадим её.
-                </h2>
-
-                <p>
-                    Напишите нам в Telegram и расскажите,
-                    что вам нужно.
-                </p>
-
-                <a
-                    href="https://t.me/NovaSiteSupportBot"
-                    target="_blank"
-                    class="btn btn-primary">
-                    💬 Написать в Telegram
-                </a>
-
-            </div>
-
+        <div class="card">
+          <div class="icon">🌐</div>
+          <h3>Сайт</h3>
+          <p>
+            Современный адаптивный сайт с красивым дизайном
+            и удобной структурой.
+          </p>
+          <div class="price">от 990 ₽</div>
         </div>
 
-    </section>
+        <div class="card">
+          <div class="icon">🤖</div>
+          <h3>Telegram-бот</h3>
+          <p>
+            Боты для поддержки клиентов, продаж,
+            уведомлений и автоматизации.
+          </p>
+          <div class="price">от 1 490 ₽</div>
+        </div>
+
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Автоматизация</h3>
+          <p>
+            Соединяем сервисы и автоматизируем
+            повторяющиеся процессы.
+          </p>
+          <div class="price">от 1 990 ₽</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+
+      <h2 class="section-title">Почему NOVA?</h2>
+
+      <p class="section-text">
+        Мы объединяем дизайн, технологии и автоматизацию,
+        чтобы создавать понятные цифровые продукты.
+      </p>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Быстро</h3>
+          <p>
+            Работаем без лишней бюрократии и сложностей.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🎯</div>
+          <h3>Под задачу</h3>
+          <p>
+            Не используем один шаблон для всех проектов.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">💎</div>
+          <h3>Современно</h3>
+          <p>
+            Следим за актуальным дизайном и технологиями.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+
+      <div class="cta">
+        <h2 class="section-title">Готовы начать?</h2>
+
+        <p>
+          Расскажите о своей задаче — обсудим идею
+          и подберём подходящее цифровое решение.
+        </p>
+
+        <a class="btn btn-primary"
+           href="https://t.me/NovaSiteSupportBot"
+           target="_blank">
+          Написать в Telegram →
+        </a>
+      </div>
+
+    </div>
+  </section>
 
 </main>
 
-
 <footer>
-
-    <div class="container footer-inner">
-
-        <div>
-            © 2026 NOVA DIGITAL
-        </div>
-
-        <div>
-            Сайты • Боты • Автоматизация
-        </div>
-
-    </div>
-
+  <div class="container">
+    © 2026 NOVA DIGITAL. Все права защищены.
+  </div>
 </footer>
 
 
-<script>
+<!-- AUTH MODAL -->
 
-    function toggleMenu() {
-        document.getElementById("nav").classList.toggle("active");
+<div class="modal" id="authModal">
+
+  <div class="modal-box">
+
+    <button class="close" id="closeModal">×</button>
+
+    <h2 id="authTitle">Вход</h2>
+
+    <div class="modal-subtitle" id="authSubtitle">
+      Войдите в аккаунт NOVA DIGITAL
+    </div>
+
+    <div class="field">
+      <input
+        type="email"
+        id="emailInput"
+        placeholder="Email"
+        autocomplete="email"
+      >
+    </div>
+
+    <div class="field">
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="Пароль"
+        autocomplete="current-password"
+      >
+    </div>
+
+    <button class="btn btn-primary auth-main-btn" id="emailAuthButton">
+      Войти
+    </button>
+
+    <button class="google-btn" id="googleButton">
+      🔵 Войти через Google
+    </button>
+
+    <div class="auth-links">
+
+      <button id="registerButton">
+        Регистрация
+      </button>
+
+      <button id="resetButton">
+        Забыли пароль?
+      </button>
+
+    </div>
+
+    <div class="auth-message" id="authMessage"></div>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+  import { initializeApp } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    sendPasswordResetEmail,
+    signOut,
+    onAuthStateChanged
+  } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAQaFsutQJHgll77z3qBp6Z_J1GuwtLmE0",
+    authDomain: "novadigital-629fd.firebaseapp.com",
+    projectId: "novadigital-629fd",
+    storageBucket: "novadigital-629fd.firebasestorage.app",
+    messagingSenderId: "356977369802",
+    appId: "1:356977369802:web:8008300f1a69a139ed8a33",
+    measurementId: "G-EPRD5S68T5"
+  };
+
+
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+
+  const googleProvider = new GoogleAuthProvider();
+
+
+  const authModal = document.getElementById("authModal");
+  const accountButton = document.getElementById("accountButton");
+  const closeModal = document.getElementById("closeModal");
+
+  const emailInput = document.getElementById("emailInput");
+  const passwordInput = document.getElementById("passwordInput");
+
+  const emailAuthButton =
+    document.getElementById("emailAuthButton");
+
+  const googleButton =
+    document.getElementById("googleButton");
+
+  const registerButton =
+    document.getElementById("registerButton");
+
+  const resetButton =
+    document.getElementById("resetButton");
+
+  const authTitle =
+    document.getElementById("authTitle");
+
+  const authSubtitle =
+    document.getElementById("authSubtitle");
+
+  const authMessage =
+    document.getElementById("authMessage");
+
+  const userPanel =
+    document.getElementById("userPanel");
+
+  const userEmail =
+    document.getElementById("userEmail");
+
+  const logoutButton =
+    document.getElementById("logoutButton");
+
+
+  let registerMode = false;
+
+
+  function openAuth() {
+
+    authModal.classList.add("active");
+
+    authMessage.textContent = "";
+
+  }
+
+
+  function closeAuth() {
+
+    authModal.classList.remove("active");
+
+  }
+
+
+  accountButton.addEventListener("click", () => {
+
+    if (auth.currentUser) {
+
+      userPanel.classList.toggle("active");
+
+    } else {
+
+      openAuth();
+
     }
 
-    function closeMenu() {
-        document.getElementById("nav").classList.remove("active");
+  });
+
+
+  closeModal.addEventListener("click", closeAuth);
+
+
+  authModal.addEventListener("click", (event) => {
+
+    if (event.target === authModal) {
+
+      closeAuth();
+
     }
+
+  });
+
+
+  registerButton.addEventListener("click", () => {
+
+    registerMode = !registerMode;
+
+    if (registerMode) {
+
+      authTitle.textContent = "Регистрация";
+
+      authSubtitle.textContent =
+        "Создайте аккаунт NOVA DIGITAL";
+
+      emailAuthButton.textContent =
+        "Создать аккаунт";
+
+      registerButton.textContent =
+        "Уже есть аккаунт? Войти";
+
+    } else {
+
+      authTitle.textContent = "Вход";
+
+      authSubtitle.textContent =
+        "Войдите в аккаунт NOVA DIGITAL";
+
+      emailAuthButton.textContent =
+        "Войти";
+
+      registerButton.textContent =
+        "Регистрация";
+
+    }
+
+    authMessage.textContent = "";
+
+  });
+
+
+  emailAuthButton.addEventListener("click", async () => {
+
+    const email = emailInput.value.trim();
+
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+
+      authMessage.textContent =
+        "Введите email и пароль.";
+
+      return;
+
+    }
+
+    if (password.length < 6) {
+
+      authMessage.textContent =
+        "Пароль должен содержать минимум 6 символов.";
+
+      return;
+
+    }
+
+    try {
+
+      authMessage.textContent =
+        "Подождите...";
+
+      if (registerMode) {
+
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      } else {
+
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      }
+
+      closeAuth();
+
+      emailInput.value = "";
+      passwordInput.value = "";
+
+    } catch (error) {
+
+      console.error(error);
+
+      const messages = {
+
+        "auth/email-already-in-use":
+          "Этот email уже зарегистрирован.",
+
+        "auth/invalid-email":
+          "Некорректный email.",
+
+        "auth/invalid-credential":
+          "Неверный email или пароль.",
+
+        "auth/weak-password":
+          "Пароль слишком слабый.",
+
+        "auth/user-not-found":
+          "Пользователь не найден."
+
+      };
+
+      authMessage.textContent =
+        messages[error.code] ||
+        "Не удалось выполнить операцию.";
+
+    }
+
+  });
+
+
+  googleButton.addEventListener("click", async () => {
+
+    try {
+
+      authMessage.textContent =
+        "Открываем Google...";
+
+      await signInWithPopup(
+        auth,
+        googleProvider
+      );
+
+      closeAuth();
+
+    } catch (error) {
+
+      console.error(error);
+
+      authMessage.textContent =
+        "Не удалось войти через Google.";
+
+    }
+
+  });
+
+
+  resetButton.addEventListener("click", async () => {
+
+    const email = emailInput.value.trim();
+
+    if (!email) {
+
+      authMessage.textContent =
+        "Сначала введи свой email.";
+
+      return;
+
+    }
+
+    try {
+
+      await sendPasswordResetEmail(
+        auth,
+        email
+      );
+
+      authMessage.textContent =
+        "Письмо для восстановления отправлено.";
+
+    } catch (error) {
+
+      console.error(error);
+
+      authMessage.textContent =
+        "Не удалось отправить письмо.";
+
+    }
+
+  });
+
+
+  logoutButton.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    userPanel.classList.remove("active");
+
+  });
+
+
+  onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+      accountButton.textContent =
+        "👤 Аккаунт";
+
+      userEmail.textContent =
+        user.email || "Google аккаунт";
+
+    } else {
+
+      accountButton.textContent =
+        "Войти";
+
+      userPanel.classList.remove("active");
+
+    }
+
+  });
+
+
+  // Mobile menu
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const navLinks =
+    document.getElementById("navLinks");
+
+  menuButton.addEventListener("click", () => {
+
+    navLinks.classList.toggle("open");
+
+  });
 
 </script>
 
