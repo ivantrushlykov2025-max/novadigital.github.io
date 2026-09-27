@@ -451,6 +451,135 @@
       cursor: pointer;
     }
 
+
+    .order-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(12px);
+    }
+
+    .order-modal.active {
+      display: flex;
+    }
+
+    .order-box {
+      width: min(500px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #10101c;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 25px 100px rgba(0,0,0,.55);
+      position: relative;
+    }
+
+    .order-box h2 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .order-subtitle {
+      color: #9090a2;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .order-close {
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      border: 0;
+      background: transparent;
+      color: #aaa;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .order-field {
+      margin-bottom: 13px;
+    }
+
+    .order-field label {
+      display: block;
+      color: #cfcfe0;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .order-field input,
+    .order-field select,
+    .order-field textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.045);
+      color: white;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .order-field select option {
+      background: #10101c;
+      color: white;
+    }
+
+    .order-field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .order-field input:focus,
+    .order-field select:focus,
+    .order-field textarea:focus {
+      border-color: #8b5cf6;
+    }
+
+    .order-submit {
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .order-message {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #aaa;
+      text-align: center;
+    }
+
+    .order-success {
+      text-align: center;
+      padding: 25px 5px;
+    }
+
+    .order-success-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .order-success h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .order-success p {
+      color: #9999aa;
+      line-height: 1.6;
+    }
+
     @media (max-width: 800px) {
       .nav-links {
         display: none;
@@ -536,11 +665,9 @@
         </p>
 
         <div class="buttons">
-          <a class="btn btn-primary"
-             href="https://t.me/NovaSiteSupportBot"
-             target="_blank">
-            Обсудить проект →
-          </a>
+          <button class="btn btn-primary order-open">
+            Заказать проект →
+          </button>
 
           <a class="btn btn-secondary" href="#services">
             Наши услуги
@@ -664,11 +791,9 @@
           и подберём подходящее цифровое решение.
         </p>
 
-        <a class="btn btn-primary"
-           href="https://t.me/NovaSiteSupportBot"
-           target="_blank">
-          Написать в Telegram →
-        </a>
+        <button class="btn btn-primary order-open">
+          Заказать проект →
+        </button>
       </div>
 
     </div>
@@ -681,6 +806,94 @@
     © 2026 NOVA DIGITAL. Все права защищены.
   </div>
 </footer>
+
+
+
+<!-- ORDER MODAL -->
+
+<div class="order-modal" id="orderModal">
+
+  <div class="order-box">
+
+    <button class="order-close" id="orderClose">×</button>
+
+    <div id="orderFormContent">
+
+      <h2>Заказать проект</h2>
+
+      <div class="order-subtitle">
+        Расскажите о задаче — заявка сразу придёт в NOVA DIGITAL.
+      </div>
+
+      <form id="orderForm">
+
+        <div class="order-field">
+          <label for="orderName">Ваше имя *</label>
+          <input
+            type="text"
+            id="orderName"
+            placeholder="Например, Иван"
+            required
+          >
+        </div>
+
+        <div class="order-field">
+          <label for="orderTelegram">Telegram *</label>
+          <input
+            type="text"
+            id="orderTelegram"
+            placeholder="@username"
+            required
+          >
+        </div>
+
+        <div class="order-field">
+          <label for="orderType">Что нужно сделать? *</label>
+          <select id="orderType" required>
+            <option value="">Выберите услугу</option>
+            <option value="Сайт">🌐 Сайт</option>
+            <option value="Telegram-бот">🤖 Telegram-бот</option>
+            <option value="Автоматизация">⚡ Автоматизация</option>
+            <option value="Другое">💡 Другое</option>
+          </select>
+        </div>
+
+        <div class="order-field">
+          <label for="orderBudget">Примерный бюджет</label>
+          <select id="orderBudget">
+            <option value="">Не определился</option>
+            <option value="До 1 500 ₽">До 1 500 ₽</option>
+            <option value="1 500–5 000 ₽">1 500–5 000 ₽</option>
+            <option value="5 000–10 000 ₽">5 000–10 000 ₽</option>
+            <option value="10 000+ ₽">10 000+ ₽</option>
+          </select>
+        </div>
+
+        <div class="order-field">
+          <label for="orderDescription">Опишите задачу</label>
+          <textarea
+            id="orderDescription"
+            placeholder="Что вы хотите получить?"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary order-submit"
+          id="orderSubmit"
+        >
+          🚀 Отправить заявку
+        </button>
+
+        <div class="order-message" id="orderMessage"></div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
 
 
 <!-- AUTH MODAL -->
@@ -1071,6 +1284,190 @@
         "Войти";
 
       userPanel.classList.remove("active");
+
+    }
+
+  });
+
+
+
+  // =========================
+  // ORDER FORM
+  // =========================
+
+  const ORDER_API =
+    "https://worker-production-d012.up.railway.app/lead";
+
+  const orderModal =
+    document.getElementById("orderModal");
+
+  const orderClose =
+    document.getElementById("orderClose");
+
+  const orderForm =
+    document.getElementById("orderForm");
+
+  const orderMessage =
+    document.getElementById("orderMessage");
+
+  const orderSubmit =
+    document.getElementById("orderSubmit");
+
+  const orderFormContent =
+    document.getElementById("orderFormContent");
+
+
+  function openOrderModal() {
+
+    orderModal.classList.add("active");
+
+  }
+
+
+  function closeOrderModal() {
+
+    orderModal.classList.remove("active");
+
+  }
+
+
+  document.querySelectorAll(".order-open").forEach((button) => {
+
+    button.addEventListener("click", openOrderModal);
+
+  });
+
+
+  orderClose.addEventListener(
+    "click",
+    closeOrderModal
+  );
+
+
+  orderModal.addEventListener("click", (event) => {
+
+    if (event.target === orderModal) {
+
+      closeOrderModal();
+
+    }
+
+  });
+
+
+  orderForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    const name =
+      document.getElementById("orderName").value.trim();
+
+    const telegram =
+      document.getElementById("orderTelegram").value.trim();
+
+    const projectType =
+      document.getElementById("orderType").value;
+
+    const budget =
+      document.getElementById("orderBudget").value;
+
+    const description =
+      document.getElementById("orderDescription").value.trim();
+
+
+    if (!name || !telegram || !projectType) {
+
+      orderMessage.textContent =
+        "Заполните обязательные поля.";
+
+      return;
+
+    }
+
+
+    orderSubmit.disabled = true;
+
+    orderSubmit.textContent =
+      "Отправляем...";
+
+    orderMessage.textContent = "";
+
+
+    try {
+
+      const response = await fetch(
+        ORDER_API,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            name: name,
+            telegram: telegram,
+            project_type: projectType,
+            budget: budget,
+            description: description
+          })
+        }
+      );
+
+
+      const result = await response.json();
+
+
+      if (!response.ok || !result.ok) {
+
+        throw new Error(
+          result.error || "Ошибка отправки"
+        );
+
+      }
+
+
+      orderFormContent.innerHTML = `
+
+        <div class="order-success">
+
+          <div class="order-success-icon">
+            ✅
+          </div>
+
+          <h3>Заявка отправлена!</h3>
+
+          <p>
+            Спасибо! Мы получили вашу заявку
+            и свяжемся с вами в Telegram
+            как можно скорее.
+          </p>
+
+        </div>
+
+      `;
+
+
+      setTimeout(() => {
+
+        closeOrderModal();
+
+        location.reload();
+
+      }, 2500);
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      orderMessage.textContent =
+        "Не удалось отправить заявку. Попробуйте ещё раз.";
+
+      orderSubmit.disabled = false;
+
+      orderSubmit.textContent =
+        "🚀 Отправить заявку";
 
     }
 
