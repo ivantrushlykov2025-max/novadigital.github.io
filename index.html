@@ -669,6 +669,146 @@
     }
   }
 
+
+<style>
+.portfolio-section{
+  padding:100px 0;
+}
+.portfolio-section .section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:42px;
+}
+.portfolio-section .eyebrow{
+  color:#9b5cff;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.portfolio-section .section-head h2{
+  font-size:clamp(36px,5vw,58px);
+  line-height:1;
+  letter-spacing:-3px;
+}
+.portfolio-section .section-text{
+  max-width:430px;
+  color:#92939e;
+}
+.portfolio-card{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  min-height:430px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:28px;
+  background:#101016;
+}
+.portfolio-preview{
+  position:relative;
+  min-height:430px;
+  padding:38px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 70% 30%,rgba(180,92,255,.3),transparent 35%),
+    linear-gradient(145deg,#1a1021,#0b0c11);
+}
+.portfolio-glow{
+  position:absolute;
+  width:280px;
+  height:280px;
+  right:-80px;
+  top:-80px;
+  background:#b45cff;
+  filter:blur(100px);
+  opacity:.25;
+}
+.portfolio-brand{
+  position:relative;
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+.portfolio-brand span{
+  color:#b45cff;
+}
+.portfolio-title{
+  position:relative;
+  margin-top:8px;
+  font-size:clamp(58px,8vw,100px);
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-6px;
+}
+.portfolio-tag{
+  position:relative;
+  margin-top:35px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.15);
+  color:#999;
+  font-size:12px;
+  letter-spacing:2px;
+}
+.portfolio-info{
+  padding:48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.portfolio-info h3{
+  font-size:38px;
+  letter-spacing:-2px;
+  margin-bottom:14px;
+}
+.portfolio-info p{
+  color:#92939e;
+  max-width:430px;
+  margin-bottom:22px;
+}
+.portfolio-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:28px;
+}
+.portfolio-tags span{
+  padding:7px 10px;
+  border:1px solid #292a32;
+  border-radius:999px;
+  color:#aaa;
+  font-size:12px;
+}
+@media(max-width:800px){
+  .portfolio-section .section-head{
+    display:block;
+  }
+  .portfolio-section .section-text{
+    margin-top:16px;
+  }
+  .portfolio-card{
+    grid-template-columns:1fr;
+  }
+  .portfolio-preview{
+    min-height:300px;
+  }
+  .portfolio-info{
+    padding:30px 24px;
+  }
+  .portfolio-info h3{
+    font-size:32px;
+  }
+  .portfolio-info .btn{
+    width:100%;
+  }
+}
+</style>
+
 </style>
 </head>
 
@@ -837,7 +977,55 @@
     </div>
   </section>
 
-  <section id="contact">
+  
+<section id="portfolio" class="portfolio-section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Портфолио</div>
+        <h2>Проекты, которые<br>говорят за нас.</h2>
+      </div>
+      <p class="section-text">
+        Создаём современные цифровые решения, которые помогают бизнесу выглядеть сильнее.
+      </p>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-preview">
+        <div class="portfolio-glow"></div>
+        <div class="portfolio-brand">VOLT<span>.</span></div>
+        <div class="portfolio-title">FITNESS</div>
+        <div class="portfolio-tag">POWER • FOCUS • PROGRESS</div>
+      </div>
+
+      <div class="portfolio-info">
+        <div class="eyebrow">Концепт сайта</div>
+        <h3>VOLT FITNESS</h3>
+        <p>
+          Современный сайт фитнес-клуба с программами тренировок,
+          абонементами и призывом к записи.
+        </p>
+
+        <div class="portfolio-tags">
+          <span>Landing page</span>
+          <span>Mobile</span>
+          <span>UI/UX</span>
+        </div>
+
+        <a
+          class="btn btn-primary"
+          href="/novadigital.github.io/volt-fitness/"
+          target="_blank"
+          rel="noopener"
+        >
+          Смотреть проект →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
     <div class="container">
 
       <div class="cta">
