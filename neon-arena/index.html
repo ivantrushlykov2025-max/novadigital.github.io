@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEON ARENA — Компьютерный клуб</title>
+<meta name="description" content="NEON ARENA — компьютерный клуб нового поколения. Игровые ПК, PS5, турниры и ночные игровые сессии.">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#07070b;
+    color:#f5f5f7;
+    line-height:1.6;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1120px,92%);
+    margin:auto;
+}
+
+/* NAV */
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    padding:18px 0;
+    background:rgba(7,7,11,.72);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#8b5cf6;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    color:#aaaab5;
+}
+
+.nav-links a:hover{
+    color:#fff;
+}
+
+.nav-btn{
+    padding:11px 17px;
+    border-radius:10px;
+    background:#8b5cf6;
+    font-size:14px;
+    font-weight:700;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    padding-top:90px;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#7c3aed;
+    filter:blur(150px);
+    opacity:.18;
+    top:-100px;
+    right:-100px;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    background:#06b6d4;
+    filter:blur(150px);
+    opacity:.12;
+    bottom:-100px;
+    left:-100px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:760px;
+}
+
+.badge{
+    display:inline-flex;
+    padding:8px 13px;
+    border:1px solid rgba(139,92,246,.4);
+    background:rgba(139,92,246,.08);
+    border-radius:999px;
+    color:#bca7ff;
+    font-size:13px;
+    margin-bottom:24px;
+}
+
+.hero h1{
+    font-size:clamp(48px,8vw,92px);
+    line-height:.95;
+    letter-spacing:-5px;
+    margin-bottom:26px;
+}
+
+.hero h1 span{
+    color:#8b5cf6;
+}
+
+.hero p{
+    max-width:600px;
+    color:#aaaab5;
+    font-size:18px;
+    margin-bottom:34px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 22px;
+    border-radius:12px;
+    font-weight:800;
+    transition:.2s;
+}
+
+.btn-primary{
+    background:#8b5cf6;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 35px rgba(139,92,246,.25);
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.13);
+    background:rgba(255,255,255,.04);
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,.08);
+}
+
+/* SECTIONS */
+
+section{
+    padding:100px 0;
+}
+
+.section-label{
+    color:#8b5cf6;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.section-title{
+    font-size:clamp(32px,5vw,52px);
+    letter-spacing:-2px;
+    margin-bottom:15px;
+}
+
+.section-text{
+    color:#9999a5;
+    max-width:600px;
+}
+
+/* ZONES */
+
+.zones{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:45px;
+}
+
+.zone{
+    padding:28px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#111119,#0c0c11);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.25s;
+}
+
+.zone:hover{
+    transform:translateY(-5px);
+    border-color:rgba(139,92,246,.45);
+}
+
+.zone-number{
+    font-size:12px;
+    color:#8b5cf6;
+    font-weight:800;
+}
+
+.zone h3{
+    margin:25px 0 10px;
+    font-size:22px;
+}
+
+.zone p{
+    color:#92929e;
+    font-size:14px;
+}
+
+/* PRICES */
+
+.prices{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:45px;
+}
+
+.price-card{
+    padding:30px;
+    border-radius:20px;
+    background:#101017;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.price-card.featured{
+    border-color:#8b5cf6;
+    box-shadow:0 0 50px rgba(139,92,246,.1);
+}
+
+.price-name{
+    color:#aaaab5;
+    font-size:14px;
+}
+
+.price{
+    font-size:40px;
+    font-weight:900;
+    margin:12px 0;
+}
+
+.price small{
+    font-size:14px;
+    color:#777783;
+    font-weight:400;
+}
+
+.price-card ul{
+    list-style:none;
+    margin:25px 0;
+}
+
+.price-card li{
+    padding:9px 0;
+    color:#aaaab5;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.price-card li::before{
+    content:"✓";
+    color:#8b5cf6;
+    margin-right:8px;
+}
+
+/* TOURNAMENT */
+
+.tournament{
+    margin-top:45px;
+    padding:45px;
+    border-radius:26px;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(139,92,246,.22),transparent 35%),
+        linear-gradient(135deg,#11111a,#09090e);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.tournament h3{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.tournament p{
+    color:#9999a5;
+    max-width:620px;
+    margin-bottom:25px;
+}
+
+.tournament-info{
+    display:flex;
+    gap:35px;
+    flex-wrap:wrap;
+}
+
+.info strong{
+    display:block;
+    font-size:22px;
+}
+
+.info span{
+    color:#777783;
+    font-size:13px;
+}
+
+/* CTA */
+
+.cta{
+    text-align:center;
+    padding:100px 20px;
+}
+
+.cta h2{
+    font-size:clamp(38px,6vw,65px);
+    letter-spacing:-3px;
+    margin-bottom:18px;
+}
+
+.cta p{
+    color:#9999a5;
+    margin-bottom:30px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:35px 0;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:#6f6f79;
+    font-size:13px;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        min-height:90vh;
+    }
+
+    .hero h1{
+        letter-spacing:-3px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .zones,
+    .prices{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:75px 0;
+    }
+
+    .tournament{
+        padding:28px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+    }
+}
+
+@media(max-width:480px){
+
+    .nav-btn{
+        padding:9px 12px;
+        font-size:12px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        text-align:center;
+        width:100%;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+    <div class="container nav-inner">
+        <a href="#" class="logo">NEON<span>ARENA</span></a>
+
+        <nav class="nav-links">
+            <a href="#zones">Зоны</a>
+            <a href="#prices">Цены</a>
+            <a href="#tournament">Турниры</a>
+        </nav>
+
+        <a href="#booking" class="nav-btn">Забронировать</a>
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+
+            <div class="badge">● OPEN 24/7 · GAMING CLUB</div>
+
+            <h1>
+                Играй.<br>
+                Побеждай.<br>
+                <span>Повторяй.</span>
+            </h1>
+
+            <p>
+                Компьютерный клуб нового поколения.
+                Мощные игровые станции, PS5, турниры и атмосфера,
+                в которой хочется остаться до утра.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#booking" class="btn btn-primary">
+                    Забронировать место
+                </a>
+
+                <a href="#prices" class="btn btn-secondary">
+                    Посмотреть цены
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="zones">
+    <div class="container">
+
+        <div class="section-label">01 / Зоны</div>
+
+        <h2 class="section-title">Выбирай свою игру.</h2>
+
+        <p class="section-text">
+            Разные зоны для разных задач — от рейтинговых матчей
+            до расслабленного вечера с друзьями.
+        </p>
+
+        <div class="zones">
+
+            <div class="zone">
+                <div class="zone-number">01 / PC</div>
+                <h3>PRO STATION</h3>
+                <p>
+                    RTX-графика, быстрые мониторы 240Hz,
+                    механические клавиатуры и игровые мыши.
+                </p>
+            </div>
+
+            <div class="zone">
+                <div class="zone-number">02 / PS5</div>
+                <h3>CONSOLE ROOM</h3>
+                <p>
+                    PS5, большой экран, удобный диван
+                    и игры для компании.
+                </p>
+            </div>
+
+            <div class="zone">
+                <div class="zone-number">03 / VIP</div>
+                <h3>PRIVATE ROOM</h3>
+                <p>
+                    Отдельная игровая комната для команды,
+                    друзей или ночной игровой сессии.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="prices">
+    <div class="container">
+
+        <div class="section-label">02 / Цены</div>
+
+        <h2 class="section-title">Играй сколько хочешь.</h2>
+
+        <p class="section-text">
+            Простая почасовая система без скрытых условий.
+        </p>
+
+        <div class="prices">
+
+            <div class="price-card">
+                <div class="price-name">STANDARD</div>
+                <div class="price">150 ₽ <small>/ час</small></div>
+
+                <ul>
+                    <li>Игровой ПК</li>
+                    <li>240Hz монитор</li>
+                    <li>Гарнитура</li>
+                </ul>
+
+                <a href="#booking" class="btn btn-secondary">
+                    Забронировать
+                </a>
+            </div>
+
+            <div class="price-card featured">
+                <div class="price-name">NIGHT</div>
+                <div class="price">699 ₽ <small>/ ночь</small></div>
+
+                <ul>
+                    <li>PC Pro Station</li>
+                    <li>00:00 — 08:00</li>
+                    <li>Энергетик в подарок</li>
+                </ul>
+
+                <a href="#booking" class="btn btn-primary">
+                    Забронировать
+                </a>
+            </div>
+
+            <div class="price-card">
+                <div class="price-name">VIP ROOM</div>
+                <div class="price">450 ₽ <small>/ час</small></div>
+
+                <ul>
+                    <li>До 5 игроков</li>
+                    <li>PS5 + PC</li>
+                    <li>Приватная комната</li>
+                </ul>
+
+                <a href="#booking" class="btn btn-secondary">
+                    Забронировать
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="tournament">
+    <div class="container">
+
+        <div class="tournament">
+
+            <div class="section-label">03 / Events</div>
+
+            <h3>NEON CUP</h3>
+
+            <p>
+                Еженедельные турниры по популярным дисциплинам.
+                Собирай команду, регистрируйся и забирай призовой фонд.
+            </p>
+
+            <div class="tournament-info">
+
+                <div class="info">
+                    <strong>5 000 ₽</strong>
+                    <span>призовой фонд</span>
+                </div>
+
+                <div class="info">
+                    <strong>32</strong>
+                    <span>участника</span>
+                </div>
+
+                <div class="info">
+                    <strong>Каждую субботу</strong>
+                    <span>старт в 18:00</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="booking" class="cta">
+
+    <div class="container">
+
+        <div class="section-label">04 / Booking</div>
+
+        <h2>Твой стол уже ждёт.</h2>
+
+        <p>
+            Бронируй место заранее и приходи играть без ожидания.
+        </p>
+
+        <a href="https://t.me/NovaSiteSupportBot" class="btn btn-primary">
+            Забронировать в Telegram
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div>NEON ARENA © 2026 · Демо-проект NOVA DIGITAL</div>
+        <div>Gaming · PC · PS5 · Tournaments</div>
+    </div>
+</footer>
+
+</body>
+</html>
+
