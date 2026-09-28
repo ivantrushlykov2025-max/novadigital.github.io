@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>NEON BITE — Кафе с характером</title>
+
+<meta name="description"
+content="NEON BITE — современное городское кафе с авторской кухней, кофе и атмосферой.">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4efe6;
+  color:#211d19;
+  line-height:1.5;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1160px,calc(100% - 40px));
+  margin:auto;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:20;
+  background:rgba(244,239,230,.88);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(33,29,25,.1);
+}
+
+.nav{
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-family:Georgia,serif;
+  font-size:25px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#c85c35;
+}
+
+.links{
+  display:flex;
+  gap:28px;
+  font-size:14px;
+}
+
+.links a{
+  opacity:.65;
+}
+
+.links a:hover{
+  opacity:1;
+}
+
+.nav-btn{
+  padding:12px 18px;
+  background:#c85c35;
+  color:#fff;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100svh;
+  padding:145px 0 80px;
+  display:flex;
+  align-items:center;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.eyebrow{
+  color:#c85c35;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+h1{
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:clamp(60px,8vw,105px);
+  line-height:.9;
+  letter-spacing:-6px;
+}
+
+h1 em{
+  color:#c85c35;
+}
+
+.hero-text{
+  max-width:500px;
+  margin:28px 0;
+  color:#716a63;
+  font-size:17px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:15px 24px;
+  border-radius:999px;
+  font-weight:bold;
+  font-size:14px;
+  transition:.2s;
+}
+
+.btn-main{
+  background:#211d19;
+  color:#fff;
+}
+
+.btn-main:hover{
+  transform:translateY(-2px);
+  background:#c85c35;
+}
+
+.btn-light{
+  border:1px solid #c9c0b5;
+}
+
+.hero-art{
+  min-height:570px;
+  border-radius:45% 45% 18px 18px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(200,92,53,.08),
+      rgba(33,29,25,.02)
+    );
+  border:1px solid rgba(33,29,25,.12);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-art:before{
+  content:"";
+  position:absolute;
+  width:330px;
+  height:330px;
+  border-radius:50%;
+  background:#c85c35;
+  opacity:.12;
+  right:-70px;
+  top:-70px;
+}
+
+.food-circle{
+  position:absolute;
+  width:310px;
+  height:310px;
+  border-radius:50%;
+  background:#2b2520;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  box-shadow:0 30px 80px rgba(33,29,25,.25);
+}
+
+.food-circle:after{
+  content:"NEON BITE";
+  position:absolute;
+  color:#f4efe6;
+  font-family:Georgia,serif;
+  font-size:26px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+}
+
+.food-label{
+  position:absolute;
+  bottom:28px;
+  left:28px;
+  color:#716a63;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+/* GENERAL */
+
+section{
+  padding:110px 0;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:45px;
+}
+
+h2{
+  font-family:Georgia,serif;
+  font-size:clamp(42px,5vw,65px);
+  font-weight:400;
+  line-height:.95;
+  letter-spacing:-3px;
+}
+
+.muted{
+  max-width:430px;
+  color:#716a63;
+}
+
+/* MENU */
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.menu-card{
+  padding:28px;
+  border:1px solid #d6cec3;
+  background:#f8f4ed;
+  border-radius:22px;
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  transition:.2s;
+}
+
+.menu-card:hover{
+  transform:translateY(-3px);
+  border-color:#c85c35;
+}
+
+.menu-card h3{
+  font-family:Georgia,serif;
+  font-size:24px;
+  font-weight:400;
+}
+
+.menu-card p{
+  color:#837b73;
+  font-size:13px;
+  margin-top:6px;
+}
+
+.price{
+  color:#c85c35;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+/* ABOUT */
+
+.about{
+  background:#211d19;
+  color:#f4efe6;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.about h2{
+  color:#f4efe6;
+}
+
+.about-text{
+  color:#b8afa5;
+  font-size:17px;
+  margin-bottom:28px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.stat{
+  border-top:1px solid #514941;
+  padding-top:18px;
+}
+
+.stat b{
+  display:block;
+  color:#c85c35;
+  font-family:Georgia,serif;
+  font-size:35px;
+  font-weight:400;
+}
+
+.stat span{
+  color:#9d958c;
+  font-size:12px;
+}
+
+/* INFO */
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.info-card{
+  border-top:2px solid #c85c35;
+  padding:24px 0;
+}
+
+.info-card h3{
+  font-family:Georgia,serif;
+  font-size:25px;
+  font-weight:400;
+  margin-bottom:8px;
+}
+
+.info-card p{
+  color:#716a63;
+  font-size:14px;
+}
+
+/* CTA */
+
+.cta{
+  text-align:center;
+  background:#d86d43;
+  color:#fff;
+  border-radius:35px;
+  padding:75px 30px;
+}
+
+.cta .eyebrow{
+  color:#ffe1d4;
+}
+
+.cta h2{
+  font-size:clamp(45px,6vw,75px);
+}
+
+.cta p{
+  max-width:500px;
+  margin:20px auto 28px;
+  color:#ffe9df;
+}
+
+.cta .btn{
+  background:#211d19;
+  color:#fff;
+}
+
+/* FOOTER */
+
+footer{
+  padding:35px 0;
+  border-top:1px solid #d6cec3;
+  color:#817970;
+  font-size:13px;
+}
+
+.footer-flex{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .links,
+  .nav-btn{
+    display:none;
+  }
+
+  .hero{
+    padding-top:125px;
+  }
+
+  .hero-grid,
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-art{
+    min-height:420px;
+  }
+
+  .food-circle{
+    width:240px;
+    height:240px;
+  }
+
+  .menu-grid,
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-head{
+    display:block;
+  }
+
+  .section-head .muted{
+    margin-top:18px;
+  }
+
+  .stats{
+    margin-top:35px;
+  }
+
+  section{
+    padding:75px 0;
+  }
+
+  .actions .btn{
+    width:100%;
+  }
+
+  .footer-flex{
+    display:block;
+  }
+}
+
+@media(max-width:480px){
+
+  .container{
+    width:calc(100% - 28px);
+  }
+
+  h1{
+    letter-spacing:-4px;
+  }
+
+  .hero-art{
+    min-height:350px;
+  }
+
+  .food-circle{
+    width:200px;
+    height:200px;
+  }
+
+  .food-circle:after{
+    font-size:20px;
+  }
+
+  .menu-card{
+    padding:22px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .cta{
+    padding:55px 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav">
+
+    <a class="logo" href="#">
+      NEON<span>.</span>BITE
+    </a>
+
+    <div class="links">
+      <a href="#menu">Меню</a>
+      <a href="#about">О нас</a>
+      <a href="#info">Контакты</a>
+    </div>
+
+    <a class="nav-btn" href="#menu">
+      Посмотреть меню
+    </a>
+
+  </div>
+</nav>
+
+
+<main>
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        Городское кафе · Каждый день
+      </div>
+
+      <h1>
+        Еда с<br>
+        <em>характером.</em>
+      </h1>
+
+      <p class="hero-text">
+        Авторские блюда, хороший кофе и атмосфера,
+        ради которой хочется остаться ещё на один час.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-main" href="#menu">
+          Смотреть меню →
+        </a>
+
+        <a class="btn btn-light" href="#info">
+          Найти нас
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="hero-art">
+
+      <div class="food-circle"></div>
+
+      <div class="food-label">
+        FRESH · LOCAL · DAILY
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="menu">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div>
+        <div class="eyebrow">
+          Меню
+        </div>
+
+        <h2>
+          Простые<br>
+          вещи. Вкусно.
+        </h2>
+      </div>
+
+      <p class="muted">
+        Мы не усложняем. Берём хорошие продукты,
+        добавляем характер и готовим всё с нуля.
+      </p>
+
+    </div>
+
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <div>
+          <h3>Паста с грибами</h3>
+          <p>Тальятелле · сливочный соус · пармезан</p>
+        </div>
+        <div class="price">690 ₽</div>
+      </div>
+
+      <div class="menu-card">
+        <div>
+          <h3>Бургер NEON</h3>
+          <p>Говядина · чеддер · соус · картофель</p>
+        </div>
+        <div class="price">790 ₽</div>
+      </div>
+
+      <div class="menu-card">
+        <div>
+          <h3>Завтрак VOLT</h3>
+          <p>Яйца · авокадо · тост · зелень</p>
+        </div>
+        <div class="price">590 ₽</div>
+      </div>
+
+      <div class="menu-card">
+        <div>
+          <h3>Томаты & буррата</h3>
+          <p>Томаты · буррата · базилик · масло</p>
+        </div>
+        <div class="price">650 ₽</div>
+      </div>
+
+      <div class="menu-card">
+        <div>
+          <h3>Капучино</h3>
+          <p>Эспрессо · молоко · авторская обжарка</p>
+        </div>
+        <div class="price">250 ₽</div>
+      </div>
+
+      <div class="menu-card">
+        <div>
+          <h3>Чизкейк</h3>
+          <p>Сливочный крем · ягоды · песочная основа</p>
+        </div>
+        <div class="price">390 ₽</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="about" id="about">
+
+  <div class="container about-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        О нас
+      </div>
+
+      <h2>
+        Место для<br>
+        своих.
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p class="about-text">
+        NEON BITE — небольшое городское кафе,
+        где встречаются хорошая еда, музыка и люди.
+        Здесь можно начать день с кофе, пообедать
+        с командой или задержаться вечером.
+      </p>
+
+      <div class="stats">
+
+        <div class="stat">
+          <b>08</b>
+          <span>лет варим кофе</span>
+        </div>
+
+        <div class="stat">
+          <b>4.9</b>
+          <span>средняя оценка</span>
+        </div>
+
+        <div class="stat">
+          <b>7/7</b>
+          <span>работаем каждый день</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="info">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div>
+        <div class="eyebrow">
+          Заглядывай
+        </div>
+
+        <h2>
+          Мы рядом.
+        </h2>
+      </div>
+
+    </div>
+
+
+    <div class="info-grid">
+
+      <div class="info-card">
+        <h3>Адрес</h3>
+        <p>
+          ул. Центральная, 24<br>
+          Москва
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Часы</h3>
+        <p>
+          Пн–Пт · 08:00–23:00<br>
+          Сб–Вс · 09:00–00:00
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Бронь</h3>
+        <p>
+          +7 900 123-45-67<br>
+          hello@neonbite.example
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="container">
+
+    <div class="cta">
+
+      <div class="eyebrow">
+        Столик ждёт
+      </div>
+
+      <h2>
+        Увидимся<br>
+        за кофе?
+      </h2>
+
+      <p>
+        Забронируй столик или просто заходи.
+        Хороший вечер начинается с хорошей еды.
+      </p>
+
+      <a class="btn" href="tel:+79001234567">
+        Забронировать столик →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="container footer-flex">
+
+    <div>
+      NEON BITE © 2026
+    </div>
+
+    <div>
+      Демо-проект NOVA DIGITAL
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
