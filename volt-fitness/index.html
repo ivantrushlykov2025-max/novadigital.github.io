@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="VOLT FITNESS — современный фитнес-клуб. Тренировки, персональные программы и абонементы.">
+<title>VOLT FITNESS — Сила начинается здесь</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#08090d;
+  color:#f5f5f7;
+  line-height:1.5
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,calc(100% - 40px));margin:auto}
+
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:20;
+  background:rgba(8,9,13,.78);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.08)
+}
+.nav{
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+.logo{
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:-1px
+}
+.logo span{color:#b45cff}
+.navlinks{
+  display:flex;
+  gap:28px;
+  color:#aaa;
+  font-size:14px
+}
+.navlinks a:hover{color:#fff}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 22px;
+  border-radius:12px;
+  font-weight:800;
+  font-size:14px;
+  transition:.2s
+}
+.btn-primary{
+  background:#b45cff;
+  color:#100817;
+  box-shadow:0 0 30px rgba(180,92,255,.2)
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 38px rgba(180,92,255,.38)
+}
+.btn-outline{
+  border:1px solid #33343e;
+  color:#eee
+}
+.btn-outline:hover{border-color:#b45cff}
+
+.hero{
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  padding:140px 0 90px;
+  position:relative;
+  overflow:hidden
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  width:620px;height:620px;
+  background:#9c35ff;
+  filter:blur(170px);
+  opacity:.18;
+  right:-220px;
+  top:80px
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  width:420px;height:420px;
+  background:#ff3d81;
+  filter:blur(180px);
+  opacity:.08;
+  left:-180px;
+  bottom:-100px
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:60px;
+  align-items:center;
+  position:relative;
+  z-index:1
+}
+.badge{
+  display:inline-flex;
+  padding:8px 12px;
+  border:1px solid rgba(180,92,255,.35);
+  border-radius:999px;
+  color:#d9b5ff;
+  background:rgba(180,92,255,.07);
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:22px
+}
+h1{
+  font-size:clamp(54px,8vw,96px);
+  line-height:.9;
+  letter-spacing:-5px
+}
+h1 span{color:#b45cff}
+.hero p{
+  margin:28px 0 34px;
+  color:#a8a8b3;
+  max-width:570px;
+  font-size:18px
+}
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap
+}
+
+.visual{
+  min-height:500px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:28px;
+  background:linear-gradient(145deg,#17101d,#0d0e14 65%);
+  position:relative;
+  overflow:hidden;
+  padding:30px;
+  box-shadow:0 30px 90px rgba(0,0,0,.45)
+}
+.visual:before{
+  content:"";
+  position:absolute;
+  width:300px;height:300px;
+  background:#b45cff;
+  filter:blur(100px);
+  opacity:.2;
+  right:-80px;
+  top:-80px
+}
+.visual-content{
+  position:absolute;
+  inset:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between
+}
+.visual-top{
+  display:flex;
+  justify-content:space-between;
+  color:#999;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1px
+}
+.number{
+  font-size:150px;
+  line-height:.8;
+  font-weight:900;
+  letter-spacing:-12px;
+  color:#fff
+}
+.visual-bottom{
+  border-top:1px solid #2b2930;
+  padding-top:20px;
+  color:#aaa;
+  font-size:14px
+}
+
+section{padding:100px 0}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  align-items:end;
+  margin-bottom:42px
+}
+.kicker{
+  color:#b45cff;
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:10px
+}
+h2{
+  font-size:clamp(36px,5vw,58px);
+  line-height:1;
+  letter-spacing:-3px
+}
+.muted{
+  color:#8f909b;
+  max-width:450px
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px
+}
+.card{
+  background:#101116;
+  border:1px solid #24252d;
+  border-radius:20px;
+  padding:28px;
+  transition:.2s
+}
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#56316f
+}
+.icon{
+  font-size:28px;
+  margin-bottom:40px
+}
+.card h3{
+  font-size:22px;
+  margin-bottom:10px
+}
+.card p{
+  color:#90919b;
+  font-size:14px
+}
+
+.prices{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px
+}
+.price{
+  padding:30px;
+  border-radius:22px;
+  border:1px solid #292a32;
+  background:#101116
+}
+.price.featured{
+  border-color:#b45cff;
+  background:linear-gradient(145deg,#17101d,#101116)
+}
+.price small{color:#999}
+.price strong{
+  display:block;
+  font-size:38px;
+  margin:18px 0
+}
+.price ul{
+  list-style:none;
+  color:#aaa;
+  font-size:14px;
+  line-height:2.2;
+  margin-bottom:22px
+}
+.price li:before{
+  content:"✓";
+  color:#b45cff;
+  margin-right:8px
+}
+
+.about{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:60px;
+  align-items:center
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px
+}
+.stat{
+  padding:25px;
+  border-radius:18px;
+  background:#101116;
+  border:1px solid #24252d
+}
+.stat b{
+  display:block;
+  font-size:38px
+}
+.stat span{
+  color:#888;
+  font-size:13px
+}
+
+.cta{
+  background:linear-gradient(135deg,#1b1024,#0f1015);
+  border:1px solid #3c2350;
+  border-radius:30px;
+  padding:60px;
+  text-align:center
+}
+.cta p{
+  color:#999;
+  max-width:560px;
+  margin:18px auto 28px
+}
+
+footer{
+  padding:35px 0;
+  color:#686a75;
+  border-top:1px solid #1d1e24;
+  font-size:13px
+}
+
+@media(max-width:800px){
+  .navlinks{display:none}
+  .nav .btn{display:none}
+  .hero-grid,.about{grid-template-columns:1fr}
+  .visual{min-height:390px}
+  .number{font-size:110px}
+  .cards,.prices{grid-template-columns:1fr}
+  .section-head{
+    display:block
+  }
+  .section-head .muted{
+    margin-top:16px
+  }
+  section{padding:75px 0}
+  h1{letter-spacing:-3px}
+  .hero p{font-size:16px}
+  .cta{padding:40px 22px}
+}
+
+@media(max-width:480px){
+  .container{
+    width:min(100% - 28px,1120px)
+  }
+  .hero{padding-top:120px}
+  .visual{
+    min-height:330px;
+    padding:22px
+  }
+  .visual-content{inset:22px}
+  .number{font-size:82px}
+  .actions .btn{
+    width:100%
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav">
+    <a class="logo" href="#">VOLT<span>.</span></a>
+
+    <div class="navlinks">
+      <a href="#about">О клубе</a>
+      <a href="#programs">Программы</a>
+      <a href="#prices">Абонементы</a>
+    </div>
+
+    <a class="btn btn-primary" href="#prices">
+      Начать тренироваться
+    </a>
+  </div>
+</nav>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="badge">
+        Фитнес-клуб нового поколения
+      </div>
+
+      <h1>
+        Стань<br>
+        <span>сильнее.</span>
+      </h1>
+
+      <p>
+        Тренировки, которые превращают цель в результат.
+        Современное пространство, сильное комьюнити и программы
+        под твой уровень.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="#prices">
+          Выбрать абонемент →
+        </a>
+
+        <a class="btn btn-outline" href="#programs">
+          Смотреть программы
+        </a>
+      </div>
+    </div>
+
+    <div class="visual">
+      <div class="visual-content">
+
+        <div class="visual-top">
+          <span>VOLT FITNESS</span>
+          <span>24 / 7</span>
+        </div>
+
+        <div class="number">V</div>
+
+        <div class="visual-bottom">
+          POWER • FOCUS • PROGRESS
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="programs">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="kicker">Программы</div>
+        <h2>
+          Тренируйся<br>
+          по-своему.
+        </h2>
+      </div>
+
+      <p class="muted">
+        От первого занятия до серьёзного прогресса —
+        выбирай формат, который подходит именно тебе.
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Силовые</h3>
+        <p>
+          Базовые и продвинутые программы для набора
+          силы и мышечной массы.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔥</div>
+        <h3>Функционал</h3>
+        <p>
+          Интенсивные тренировки на выносливость,
+          мобильность и общую форму.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">◎</div>
+        <h3>Персонально</h3>
+        <p>
+          Индивидуальный план и тренер, который помогает
+          держать темп и результат.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="prices">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="kicker">Абонементы</div>
+        <h2>
+          Выбирай свой<br>
+          уровень.
+        </h2>
+      </div>
+    </div>
+
+    <div class="prices">
+
+      <div class="price">
+        <small>START</small>
+        <strong>1 990 ₽</strong>
+
+        <ul>
+          <li>8 посещений</li>
+          <li>Тренажёрный зал</li>
+          <li>Раздевалка и душ</li>
+        </ul>
+
+        <a class="btn btn-outline" href="#contact">
+          Выбрать
+        </a>
+      </div>
+
+
+      <div class="price featured">
+        <small>PRO</small>
+        <strong>3 490 ₽</strong>
+
+        <ul>
+          <li>Безлимитные посещения</li>
+          <li>Все групповые программы</li>
+          <li>Фитнес-тестирование</li>
+        </ul>
+
+        <a class="btn btn-primary" href="#contact">
+          Выбрать
+        </a>
+      </div>
+
+
+      <div class="price">
+        <small>PERSONAL</small>
+        <strong>7 990 ₽</strong>
+
+        <ul>
+          <li>Безлимитный зал</li>
+          <li>8 занятий с тренером</li>
+          <li>Персональная программа</li>
+        </ul>
+
+        <a class="btn btn-outline" href="#contact">
+          Выбрать
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="about">
+  <div class="container about">
+
+    <div>
+      <div class="kicker">VOLT FITNESS</div>
+
+      <h2>
+        Место,<br>
+        где растут<br>
+        <span style="color:#b45cff">
+          результаты.
+        </span>
+      </h2>
+    </div>
+
+    <div>
+
+      <p class="muted" style="margin-bottom:25px">
+        Мы собрали всё необходимое для комфортных тренировок:
+        современное оборудование, тренеров и атмосферу,
+        в которую хочется возвращаться.
+      </p>
+
+      <div class="stats">
+
+        <div class="stat">
+          <b>24/7</b>
+          <span>Доступ к клубу</span>
+        </div>
+
+        <div class="stat">
+          <b>40+</b>
+          <span>Тренажёров</span>
+        </div>
+
+        <div class="stat">
+          <b>12</b>
+          <span>Направлений</span>
+        </div>
+
+        <div class="stat">
+          <b>5★</b>
+          <span>Атмосфера</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <div class="container">
+
+    <div class="cta">
+
+      <div class="kicker">Первый шаг</div>
+
+      <h2>
+        Готов начать?
+      </h2>
+
+      <p>
+        Оставь заявку, и администратор поможет подобрать
+        подходящий формат тренировок.
+      </p>
+
+      <a
+        class="btn btn-primary"
+        href="mailto:hello@volt-fitness.example"
+      >
+        Записаться на тренировку →
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+    VOLT FITNESS © 2026 · Демо-проект NOVA DIGITAL
+  </div>
+</footer>
+
+</body>
+</html>
